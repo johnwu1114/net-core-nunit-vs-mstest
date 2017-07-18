@@ -1,11 +1,11 @@
-﻿using System.Collections;
+﻿using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace Example.NUnit.TestCases
 {
     internal class LoginTestCases
     {
-        public static IEnumerable TestCases
+        public static IEnumerable<TestCaseData> TestCases
         {
             get
             {
