@@ -34,9 +34,9 @@
             return member;
         }
 
-        private bool IsValidLoginNameOrPassword(string username, string password)
+        private bool IsValidLoginNameOrPassword(string loginName, string password)
         {
-            return !((string.IsNullOrEmpty(username) || username.Length < 6
+            return !((string.IsNullOrEmpty(loginName) || loginName.Length < 6
                    || string.IsNullOrEmpty(password) || password.Length < 6));
         }
     }

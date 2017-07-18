@@ -35,7 +35,7 @@ namespace Example.MSTest
         }
 
         [TestMethod]
-        public void Login_User_Not_Found()
+        public void Login_Member_Not_Found()
         {
             // Arrange
             var expectedMessage = "LoginNameOrPasswordIncorrect";
@@ -53,7 +53,7 @@ namespace Example.MSTest
         }
 
         [TestMethod]
-        public void Login_User_Is_Inactive()
+        public void Login_Member_Is_Inactive()
         {
             // Arrange
             var expectedMessage = "Inactive";
@@ -61,7 +61,7 @@ namespace Example.MSTest
             var password = "pass.123";
             var actualMessage = string.Empty;
             _memberRepository.Authenticate(Arg.Any<string>(), Arg.Any<string>(), ref actualMessage)
-                             .ReturnsForAnyArgs(x => { return new Member(); });
+                             .ReturnsForAnyArgs(x => { return new Member { IsActive = false }; });
 
             // Act
             _memberBLL.Login(loginName, password, ref actualMessage);
@@ -71,7 +71,7 @@ namespace Example.MSTest
         }
 
         [TestMethod]
-        public void Login_Username_Too_Short()
+        public void Login_LoginName_Too_Short()
         {
             // Arrange
             var expectedMessage = "LoginNameOrPasswordIncorrect";
