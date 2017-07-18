@@ -4,4 +4,5 @@ Thumbs.db
 bin/
 obj/
 node_modules/
+TestResults/
 *.log
