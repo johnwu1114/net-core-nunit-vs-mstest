@@ -1,4 +1,3 @@
-using System;
 using NUnit.Framework;
 
 namespace Example.NUnit
@@ -14,7 +13,7 @@ namespace Example.NUnit
             // Act
             // Assert
         }
-        
+
         [Test]
         public void F02_ChangePassword()
         {
@@ -22,7 +21,7 @@ namespace Example.NUnit
             // Act
             // Assert
         }
-        
+
         [Test]
         public void F03_Logout()
         {

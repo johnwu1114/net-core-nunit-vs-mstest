@@ -27,26 +27,43 @@ namespace Example.NUnit
         private IMemberRepository _memberRepository;
         private MemberBLL _memberBLL;
 
-        [SetUp]
+        [OneTimeSetUp]
         public void Initialize()
         {
             _memberRepository = Substitute.For<IMemberRepository>();
+            _memberRepository.ChangePassword(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>())
+                             .ReturnsForAnyArgs(x => { return true; });
             _memberBLL = new MemberBLL(_memberRepository);
+        }
+
+        [Test]
+        public void ChangePassword_Success()
+        {
+            // Arrange
+            var expected = true;
+            var loginName = "johnwu";
+            var oldPassword = "pass.123";
+            var newPassword = "pass.1234";
+
+            // Act
+            var actual = _memberBLL.ChangePassword(loginName, oldPassword, newPassword);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
         }
 
         [Category("TestCaseAttribute")]
         [TestCase(new object[] { true, "johnwu", "pass.123", "pass.1234" }, TestName = "ChangePassword_Success")]
         [TestCase(new object[] { false, "johnwu", "pass.123", "pass.123" }, TestName = "ChangePassword_Same_Password")]
         [TestCase(new object[] { false, "johnwu", "pass", "pass.123" }, TestName = "ChangePassword_Old_Password_Too_Short")]
+        [TestCase(new object[] { false, "johnwu", "01234567890123456789a", "pass.123" }, TestName = "ChangePassword_Old_Password_Too_Long")]
         [TestCase(new object[] { false, "johnwu", "pass.123", "pass" }, TestName = "ChangePassword_New_Password_Too_Short")]
-        [TestCase(new object[] { false, "john.wu", "pass.123", "pass.123" }, TestName = "ChangePassword_LoginName_Incorrect_Format")]
-        [TestCase(new object[] { false, "john", "pass.123", "pass.123" }, TestName = "ChangePassword_LoginName_Too_Short")]
+        [TestCase(new object[] { false, "johnwu", "pass.123", "01234567890123456789a" }, TestName = "ChangePassword_New_Password_Too_Long")]
+        [TestCase(new object[] { false, "john", "pass.123", "pass.1234" }, TestName = "ChangePassword_LoginName_Too_Short")]
+        [TestCase(new object[] { false, "01234567890123456789a", "pass.123", "pass.1234" }, TestName = "ChangePassword_LoginName_Too_Long")]
+        [TestCase(new object[] { false, "john.wu", "pass.123", "pass.1234" }, TestName = "ChangePassword_LoginName_Incorrect_Format")]
         public void ChangePassword(bool expected, string loginName, string oldPassword, string newPassword)
         {
-            // Arrange
-            _memberRepository.ChangePassword(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>())
-                             .ReturnsForAnyArgs(x => { return true; });
-
             // Act
             var actual = _memberBLL.ChangePassword(loginName, oldPassword, newPassword);
 
