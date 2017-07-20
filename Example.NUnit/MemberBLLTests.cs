@@ -52,7 +52,7 @@ namespace Example.NUnit
             Assert.AreEqual(expected, actual);
         }
 
-        [Category("TestCaseAttribute")]
+        [Category("NUnit_ChangePassword_TestCaseAttribute")]
         [TestCase(new object[] { true, "johnwu", "pass.123", "pass.1234" }, TestName = "ChangePassword_Success")]
         [TestCase(new object[] { false, "johnwu", "pass.123", "pass.123" }, TestName = "ChangePassword_Same_Password")]
         [TestCase(new object[] { false, "johnwu", "pass", "pass.123" }, TestName = "ChangePassword_Old_Password_Too_Short")]
@@ -71,7 +71,7 @@ namespace Example.NUnit
             Assert.AreEqual(expected, actual);
         }
 
-        [Category("TestCaseSource")]
+        [Category("NUnit_Login_TestCaseSource")]
         [TestCaseSource(nameof(_testCases))]
         public void Login(string expectedMessage, string loginName, string password, Member member)
         {
@@ -87,7 +87,7 @@ namespace Example.NUnit
             Assert.AreEqual(expectedMessage, actualMessage);
         }
 
-        [Category("TestCaseSource_From_TestCaseData")]
+        [Category("NUnit_Login_TestCaseSource_From_TestCaseData")]
         [TestCaseSource(typeof(LoginTestCases), nameof(LoginTestCases.TestCases))]
         public string Login(string loginName, string password, Member member)
         {

@@ -2,7 +2,7 @@ using NUnit.Framework;
 
 namespace Example.NUnit
 {
-    [Category("IntegrationTest")]
+    [Category("NUnit_IntegrationTest")]
     [TestFixture]
     public class MemberBLLIntegrationTest
     {

@@ -3,7 +3,6 @@ using NSubstitute;
 
 namespace Example.MSTest
 {
-    [TestCategory("MSTest")]
     [TestClass]
     public class MemberBLLTests
     {
@@ -21,7 +20,7 @@ namespace Example.MSTest
 
         #region "ChangePassword"
 
-        [TestMethod]
+        [TestCategory("MSTest_ChangePassword"), TestMethod]
         public void ChangePassword_Success()
         {
             // Arrange
@@ -37,7 +36,7 @@ namespace Example.MSTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [TestCategory("MSTest_ChangePassword"), TestMethod]
         public void ChangePassword_Same_Password()
         {
             // Arrange
@@ -53,7 +52,7 @@ namespace Example.MSTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [TestCategory("MSTest_ChangePassword"), TestMethod]
         public void ChangePassword_Old_Password_Too_Short()
         {
             // Arrange
@@ -69,7 +68,7 @@ namespace Example.MSTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [TestCategory("MSTest_ChangePassword"), TestMethod]
         public void ChangePassword_Old_Password_Too_Long()
         {
             // Arrange
@@ -85,7 +84,7 @@ namespace Example.MSTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [TestCategory("MSTest_ChangePassword"), TestMethod]
         public void ChangePassword_New_Password_Too_Short()
         {
             // Arrange
@@ -101,7 +100,7 @@ namespace Example.MSTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [TestCategory("MSTest_ChangePassword"), TestMethod]
         public void ChangePassword_New_Password_Too_Long()
         {
             // Arrange
@@ -117,7 +116,7 @@ namespace Example.MSTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [TestCategory("MSTest_ChangePassword"), TestMethod]
         public void ChangePassword_LoginName_Too_Short()
         {
             // Arrange
@@ -133,7 +132,7 @@ namespace Example.MSTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [TestCategory("MSTest_ChangePassword"), TestMethod]
         public void ChangePassword_LoginName_Too_Long()
         {
             // Arrange
@@ -149,7 +148,7 @@ namespace Example.MSTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [TestCategory("MSTest_ChangePassword"), TestMethod]
         public void ChangePassword_LoginName_Incorrect_Format()
         {
             // Arrange
@@ -169,7 +168,7 @@ namespace Example.MSTest
 
         #region "Login"
 
-        [TestMethod]
+        [TestCategory("MSTest_Login"), TestMethod]
         public void Login_Success()
         {
             // Arrange
@@ -187,7 +186,7 @@ namespace Example.MSTest
             Assert.AreEqual(expectedMessage, actualMessage);
         }
 
-        [TestMethod]
+        [TestCategory("MSTest_Login"), TestMethod]
         public void Login_Member_Not_Found()
         {
             // Arrange
@@ -205,7 +204,7 @@ namespace Example.MSTest
             Assert.AreEqual(expectedMessage, actualMessage);
         }
 
-        [TestMethod]
+        [TestCategory("MSTest_Login"), TestMethod]
         public void Login_Member_Is_Inactive()
         {
             // Arrange
@@ -223,7 +222,7 @@ namespace Example.MSTest
             Assert.AreEqual(expectedMessage, actualMessage);
         }
 
-        [TestMethod]
+        [TestCategory("MSTest_Login"), TestMethod]
         public void Login_LoginName_Too_Short()
         {
             // Arrange
@@ -241,7 +240,7 @@ namespace Example.MSTest
             Assert.AreEqual(expectedMessage, actualMessage);
         }
 
-        [TestMethod]
+        [TestCategory("MSTest_Login"), TestMethod]
         public void Login_Password_Too_Short()
         {
             // Arrange
@@ -259,7 +258,7 @@ namespace Example.MSTest
             Assert.AreEqual(expectedMessage, actualMessage);
         }
 
-        [TestMethod]
+        [TestCategory("MSTest_Login"), TestMethod]
         public void Login_LoginName_Too_Long()
         {
             // Arrange
@@ -277,7 +276,7 @@ namespace Example.MSTest
             Assert.AreEqual(expectedMessage, actualMessage);
         }
 
-        [TestMethod]
+        [TestCategory("MSTest_Login"), TestMethod]
         public void Login_Password_Too_Long()
         {
             // Arrange
