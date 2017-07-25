@@ -53,22 +53,31 @@ namespace Example.NUnit
         }
 
         [Category("NUnit_ChangePassword_TestCaseAttribute")]
-        [TestCase(new object[] { true, "johnwu", "pass.123", "pass.1234" }, TestName = "ChangePassword_Success")]
-        [TestCase(new object[] { false, "johnwu", "pass.123", "pass.123" }, TestName = "ChangePassword_Same_Password")]
-        [TestCase(new object[] { false, "johnwu", "pass", "pass.123" }, TestName = "ChangePassword_Old_Password_Too_Short")]
-        [TestCase(new object[] { false, "johnwu", "01234567890123456789a", "pass.123" }, TestName = "ChangePassword_Old_Password_Too_Long")]
-        [TestCase(new object[] { false, "johnwu", "pass.123", "pass" }, TestName = "ChangePassword_New_Password_Too_Short")]
-        [TestCase(new object[] { false, "johnwu", "pass.123", "01234567890123456789a" }, TestName = "ChangePassword_New_Password_Too_Long")]
-        [TestCase(new object[] { false, "john", "pass.123", "pass.1234" }, TestName = "ChangePassword_LoginName_Too_Short")]
-        [TestCase(new object[] { false, "01234567890123456789a", "pass.123", "pass.1234" }, TestName = "ChangePassword_LoginName_Too_Long")]
-        [TestCase(new object[] { false, "john.wu", "pass.123", "pass.1234" }, TestName = "ChangePassword_LoginName_Incorrect_Format")]
-        public void ChangePassword(bool expected, string loginName, string oldPassword, string newPassword)
+        [TestCase(new object[] { "johnwu", "pass.123", "pass.1234" }, 
+            ExpectedResult = true, TestName = "ChangePassword_Success")]
+        [TestCase(new object[] { "johnwu", "pass.123", "pass.123" }, 
+            ExpectedResult = false, TestName = "ChangePassword_Same_Password")]
+        [TestCase(new object[] { "johnwu", "pass", "pass.123" }, 
+            ExpectedResult = false, TestName = "ChangePassword_Old_Password_Too_Short")]
+        [TestCase(new object[] { "johnwu", "01234567890123456789a", "pass.123" }, 
+            ExpectedResult = false, TestName = "ChangePassword_Old_Password_Too_Long")]
+        [TestCase(new object[] { "johnwu", "pass.123", "pass" }, 
+            ExpectedResult = false, TestName = "ChangePassword_New_Password_Too_Short")]
+        [TestCase(new object[] { "johnwu", "pass.123", "01234567890123456789a" }, 
+            ExpectedResult = false, TestName = "ChangePassword_New_Password_Too_Long")]
+        [TestCase(new object[] { "john", "pass.123", "pass.1234" }, 
+            ExpectedResult = false, TestName = "ChangePassword_LoginName_Too_Short")]
+        [TestCase(new object[] { "01234567890123456789a", "pass.123", "pass.1234" }, 
+            ExpectedResult = false, TestName = "ChangePassword_LoginName_Too_Long")]
+        [TestCase(new object[] { "john.wu", "pass.123", "pass.1234" }, 
+            ExpectedResult = false, TestName = "ChangePassword_LoginName_Incorrect_Format")]
+        public bool ChangePassword(string loginName, string oldPassword, string newPassword)
         {
             // Act
             var actual = _memberBLL.ChangePassword(loginName, oldPassword, newPassword);
 
             // Assert
-            Assert.AreEqual(expected, actual);
+            return actual;
         }
 
         [Category("NUnit_Login_TestCaseSource")]
